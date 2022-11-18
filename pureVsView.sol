@@ -34,3 +34,7 @@ contract viewVsPure{
         return 1;
     }
 }
+
+//Pure and View both are read functions. They don't consume gas and change the blockchain state.
+
+//View can read data from the blockchain. Pure can't read data from the blockchain , they can read local variables.
