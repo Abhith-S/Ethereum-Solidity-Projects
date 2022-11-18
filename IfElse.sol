@@ -1,36 +1,41 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract ForLoop{
+contract IfElse{
 
-    // a function that uses 'for' loop to take the aggregate sum of all values from 1 upto a limit
-    function forLoopExample(uint _limit)public pure returns(uint){
+    //a simple function that takes a number as input and return if it is a positive , negative or zero
+    function sample(int _num)public pure returns(string memory){
+     
+        //check if _num greater than 0, if yes then it is positive
+        if(_num > 0){
+            return "Positive Number";
 
-        uint aggregateSum;
+        //check if _num equal to 0, if yes then it is Zero
+        }else if(_num == 0){
+            return "Zero";
 
-        //For loop
-        for(uint i = 1; i <= _limit; i++){
-            aggregateSum += i;
+        //if none of the conditions above are true then _num is negative
+        }else{
+            return "Negative Number";
         }
-        return aggregateSum;
 
+        //else state can also be written after ending of 'else if' without 'else' keyword , using only just a return statement as:
+        //return "Negative Number";
     }
 }
 
-contract WhileLoop{
+contract IfElseTernary{
 
-    // a function that uses 'while' loop to take the aggregate sum of all values from 1 upto a limit
-    function whileLoopExample(uint _limit)public pure returns(uint){
+    function sample(int _num)public pure returns(string memory){
+        
+        // if(_num > 0){
+        //     return "Positie Number";
+        // }
+        // return "Negative Number";
 
-        uint aggregateSum;
-        uint i = 1;
 
-        //While loop
-        while(i <= _limit){
-            aggregateSum += i;
-            i++;
-        }
-        return aggregateSum;
-
+        //the above 'if' and a 'else' statement can be written on a single line using 'ternary operator' as:
+        return _num > 0 ? "Positive Number" : "Negative Number" ;
     }
 }
+
