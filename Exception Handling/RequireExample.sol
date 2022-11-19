@@ -1,40 +1,25 @@
 //SPDX-License-Identifier: MIT
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
-contract requireSample{
+//Smart contract to show use of 'require'
+contract RequireSample{
+   
+    uint public count;
 
-    //mapping to store balance corresponding to  an address
-    mapping(address => uint) public balanceRecieved;
+    //function to increment count
+    function increment(uint _x)public{
 
-    //function to recieve funds
-    function deposit()public payable{
-        balanceRecieved[msg.sender]  += msg.value;
+        //only execute rest of the code if _x is less than 10, else return a custom error message
+        require(_x < 10, "_x should be less than 10");
+        count += _x;
     }
 
-    //function to withdraw funds
-    function withdraw(address payable _to, uint _amount)public {
+    //function to decrement count
+    function decrement(uint _x)public{
 
-    //     //if _amount is less or = awailable funds then withdraw
-    //     if(_amount <= balanceRecieved[msg.sender]){
-
-    //         //First update balance to prevent reentrancy attack
-    //         balanceRecieved[msg.sender] -= _amount;
-
-    //         //now transfer funds
-    //         _to.transfer(_amount);
-    //     }
-    // }
-
-    //              OR
-
-            //using require we can send a custom error message. Here it is "Not enough funds"
-            require(_amount <= balanceRecieved[msg.sender],"Not enough funds");
-
-            //First update balance to prevent reentrancy attack
-            balanceRecieved[msg.sender] -= _amount;
-
-            //now transfer funds
-            _to.transfer(_amount);
+        //only execute rest of the code if _x is less than 10, else return a custom error message
+        require(_x < 10, "_x should be less than 10");
+        count -= _x;
     }
-
+    
 }
