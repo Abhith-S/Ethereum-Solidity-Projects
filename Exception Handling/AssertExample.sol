@@ -1,6 +1,7 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+//Smart contract to show use of 'assert'
 contract assertExample{
    
     uint public count;
