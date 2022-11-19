@@ -27,7 +27,7 @@ contract RevertExample{
             revert("_x should be less than 10");
         }
         else{
-            count += _x;
+            count -= _x;
         }
     }
 }
