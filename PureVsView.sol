@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract viewVsPure{
+contract PureVsView{
 
     //declaring a state variable
     uint num = 10;
