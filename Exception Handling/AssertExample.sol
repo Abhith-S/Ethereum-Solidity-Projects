@@ -1,28 +1,31 @@
 //SPDX-License-Identifier: MIT
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
-contract assertSample{
+contract assertExample{
+   
+    uint public count;
 
-    //using uint8 for showing assert example
-    //mapping to map an address to amount of fund it holds
-    mapping(address => uint8) public balanceRecieved;
+    //function to increment count
+    function increment(uint _x)public{
 
-    //function to deposit funds
-    function deposit()public payable{
-
-        //storing recieved funds corresponding to the send address
-        //setting msg.value as uint8 as it is default uint256
-        balanceRecieved[msg.sender] = uint8(msg.value);
-
-        //adding assert statement to give error and rollback if false 
-        assert(msg.value == uint8(msg.value));
+        //only execute rest of the code if _x is less than 10, else return a custom error message
+        require(_x < 10, "_x should be less than 10");
+        count += _x;
     }
 
-    //function to withdraw funds
-    //set amount to uint8 to not have error during decrement of balance operation
-    function withdraw(address payable _to, uint8 _amount)public {
-        require(_amount <= balanceRecieved[msg.sender],"Not enough funds");
-        balanceRecieved[msg.sender] -= _amount;
-        _to.transfer(_amount);
+    //function to decrement count
+    function decrement(uint _x)public{
+
+        //only execute rest of the code if _x is less than 10, else return a custom error message
+        require(_x < 10, "_x should be less than 10");
+        count -= _x;
     }
+    
+    //use 'assert' , function executes only if value of count = 10
+    //else there will be error
+    function assertTest()public {
+        assert(count == 10);
+        count += 10;
+    }
+    
 }
