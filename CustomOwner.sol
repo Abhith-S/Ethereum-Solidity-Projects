@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 //Smart contract in which only an owner can set a new owner
-contract customOwner{
+contract CustomOwner{
     
     address public owner;
 
