@@ -19,6 +19,10 @@ contract CustomOwner{
 
     //function to set new owner
     function setNewOwner(address _newOwner) public onlyOwner{
+        
+        //to ensure that '0' addresses are not set as owner
+        require(_newOwner != address(0), "Please enter a valid address");
+        
         owner = _newOwner;
     }
 }
