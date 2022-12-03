@@ -7,9 +7,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
 
-contract SharedWallet{
+//importing contract that sets msg.sender as owner and gives other functionalities
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
 
-    address owner;
+contract SharedWallet is Ownable{
 
     //mapping to map address to corresponding allowance
     mapping(address => uint) public allowance;
@@ -17,38 +18,30 @@ contract SharedWallet{
     //fallback function to deposit funds to SC
     fallback() external payable{}
 
-    //set the owner using constructor
-    constructor(){
-        owner = msg.sender;
-    }
+    //the fallback fn needs a recieve ether function to get rid of the warnings
+    receive() external payable{}
 
-    // only owner
-    modifier onlyOwner(){
 
-        require(msg.sender == owner, "You are not allowed to do this function");
+    // only owner or allowed address
+    modifier ownerOrAllowed(uint _amount) {
+        
+        //here the owner() is from Ownable.sol
+        require(msg.sender == owner() ||allowance[msg.sender] >= _amount, "You are not allowed");
         _;
     }
 
-    //withdrawal function
-    function ownerWithdraw(address payable _to, uint _amount)public onlyOwner {
-        
-        //withdraw funds from this contract
-        _to.transfer(_amount);
-
-    }
-
     //function to set allowance to addresses
+    //the onlyOwner modifier here comes from openzepplin ownable.sol
     function setAllowance(address _to, uint  _amount)public onlyOwner{
         allowance[_to] = _amount;
     }
 
 
-    //withdraw by allowance allowed
-    function withdrawAllowance(address payable _to,uint _amount)public{
+    //withdraw by allowance allowed or any amount by owner
+    //can pass the _amount from withdraw() to ownerOrAllowed()
+    function withdraw(address payable _to,uint _amount)public ownerOrAllowed(_amount){
 
-        require(allowance[_to] >= _amount, "Not enough balance");
-
-        allowance[_to] -= _amount;
+        //allowance[_to] -= _amount;
 
         _to.transfer(_amount);
     }
