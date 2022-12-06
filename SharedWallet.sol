@@ -41,6 +41,11 @@ contract Allowance is Ownable{
 
         allowance[_to] -= _amount;
     }
+    
+    //function to disable the renounceOwnership()  function
+    function renounceOwnership() override public pure{
+        revert("Can't do this task");
+    }
 }
 
 
