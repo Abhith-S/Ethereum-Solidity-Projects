@@ -1,11 +1,11 @@
-//script file to get the value of num from ABIArray contract and also update it
+//script file to get the value of num from ABITest contract and also update it
 
 (async ()=> {
 
-    //address of ABIArray contract
+    //address of ABITest contract
     const address = "paste Contract address here";
 
-    //paste the abi form the contract
+    //paste the abi from the contract
     const abiArray = //paste abi here
 
     const contractInstance = new web3.eth.Contract(abiArray, address);
