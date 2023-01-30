@@ -1,0 +1,45 @@
+{
+  "description": "Fight Club Poster", 
+  "external_url": "https://ipfs.filebase.io/ipfs/QmZGhkbFf9jXamAuS4KBPQgHbAv8NpsSCPEh6m8QR5iikq", 
+  "image": "https://ipfs.filebase.io/ipfs/QmZGhkbFf9jXamAuS4KBPQgHbAv8NpsSCPEh6m8QR5iikq", 
+  "name": "Fight Club",
+  "attributes": [ {
+      "trait_type": "Edward Norton", 
+      "value": "Edward Norton"
+    }, 
+    {
+      "trait_type": "Brad Pitt", 
+      "value": "Tyler Durden"
+    }, 
+    {
+      "trait_type": "Director", 
+      "value": "David Fincher"
+    }, 
+    {
+      "trait_type": "Genre", 
+      "value": "Thriller/Drama"
+    }, 
+    {
+      "trait_type": "Google Users Like (%)", 
+      "value": 92,
+      "max_value": 100
+    }, 
+    {
+      "trait_type": "Rotten Tomatoes (%)", 
+      "value": 79,
+      "max_value": 100
+    },  
+    {
+      "display_type": "number", 
+      "trait_type": "IMDB Rating", 
+      "value": 8.8,
+      "max_value": 10
+    },
+    {
+        "display_type": "date", 
+        "trait_type": "Release Date", 
+        "value": 942280261
+    }
+  
+  ]
+}
