@@ -1,5 +1,11 @@
+//view nft - https://testnets.opensea.io/assets/goerli/0x38236100C2c41B98dAECEB8546b8Fe9AD7eAC6FD/0
+//view nft image - https://ipfs.filebase.io/ipfs/QmZGhkbFf9jXamAuS4KBPQgHbAv8NpsSCPEh6m8QR5iikq
+//view nft metadata - https://ipfs.filebase.io/ipfs/QmNcMRoxDmGfCfLvZxA1vGooB4czM3Fu27f4fXLvo6Dv9A
+
+
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
+
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
@@ -13,10 +19,13 @@ contract FightClub is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Burnable
 
     Counters.Counter private _tokenIdCounter;
 
+    uint MAX_SUPPLY = 100;
+
     constructor() ERC721("FightClub", "FIGHT") {}
 
     function safeMint(address to, string memory uri) public onlyOwner {
         uint256 tokenId = _tokenIdCounter.current();
+        require(tokenId <= MAX_SUPPLY,"All NFTs minted");
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
