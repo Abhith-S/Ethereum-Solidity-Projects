@@ -6,7 +6,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
-
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
@@ -23,11 +22,22 @@ contract FightClub is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Burnable
 
     constructor() ERC721("FightClub", "FIGHT") {}
 
+    //keep track of nfts minted per account
+    mapping(address => uint) public nftCount;
+
     function safeMint(address to, string memory uri) public onlyOwner {
+
+        //limit 5 nft per account
+        require(nftCount[msg.sender] < 5, "You can't mint more nfts");
+
         uint256 tokenId = _tokenIdCounter.current();
         require(tokenId <= MAX_SUPPLY,"All NFTs minted");
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
+
+        //increment count
+        nftCount[msg.sender]++;
+
         _setTokenURI(tokenId, uri);
     }
 
