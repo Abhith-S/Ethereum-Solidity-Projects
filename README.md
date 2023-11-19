@@ -1,2 +1,2 @@
 # Learn Solidity
-Code snippets and Mini Projects with detailed description to learn ethereum and solidity. Includes problems, concepts and mini projects.
+Projects and Code snippets with detailed description using ethereum and solidity.
